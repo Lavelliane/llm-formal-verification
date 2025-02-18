@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Button, Input } from "@heroui/react";
 
 interface FileUploadProps {
-  type: "svo" | "ban";
+  type: "svo_verification" | "ban_verification";
 }
 
 export default function FileUpload({ type }: FileUploadProps) {
@@ -18,6 +18,7 @@ export default function FileUpload({ type }: FileUploadProps) {
     const formData = new FormData();
     files.forEach((file) => {
       formData.append("files", file);
+      formData.append("type", type);
     });
     const response = await fetch("/api/v1/train", {
       method: "POST",
